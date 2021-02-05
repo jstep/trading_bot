@@ -2,7 +2,7 @@ import requests
 
 
 def post(message, channel='#reporting', username='TradeBot', icon_emoji=':chart_with_upwards_trend:'):
-    hook = "https://hooks.slack.com/services/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"
+    hook = "<SLACK_URL>"
     headers = {'content-type': 'application/json'}
     payload = {
         "text": message,
