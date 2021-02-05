@@ -1,0 +1,35 @@
+###################################
+#########Local to Remote###########
+################################### 
+
+# Itchbot
+rsync -rave 'ssh -i ~/.ssh/trading.pem' ~/trading/localbot ec2-user@ec2-35-163-52-214.us-west-2.compute.amazonaws.com:/home/ec2-user/all_bots
+
+###################################
+#########Remote to Local###########
+###################################
+# Itch 
+scp -i ~/.ssh/trading.pem -r ec2-user@ec2-35-163-52-214.us-west-2.compute.amazonaws.com:~/all_bots/itchbot/ ~/Desktop/itchbot_backup/
+
+###################################
+TODO: make these steps into a bash script for deploying easier
+- delete/move logs
+- Do rsync
+- rename/delete folder
+- delete *.pyc
+- check bid volume -               bottrade
+- self.verify set to False -       constants.py
+- check strategy in use -          bot
+- check strategy flags -           specific strategy
+- check strategy stop loss -       specific strategy
+- check max simultaneous trades -  botstrategy
+
+- Set -O flag so debug is off -
+- remove the -O if you don't want to send to slack
+python -O bot.py -x kraken -p 5 -t 5 -c XXBTZUSD
+
+- after supervisorctl config file is changed:
+    supervisorctl reread
+    supervisorctl update
+    supervisorctl status
+    supervisorctl start (if necessary)
